@@ -4,9 +4,21 @@ metadata:
   name: multicontainer
   namespace: roboshop
 
+
+
 spec:
   containers: 
     - name: nginx
       image: nginx
+
     - name: almalinux
       image: almalinux
+
+      command: ["sleep" : "1000"]
+
+      envFrom:
+        - configMapRef:
+            name: db-config
+  
+
+  
