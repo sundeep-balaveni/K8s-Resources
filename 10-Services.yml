@@ -5,8 +5,8 @@ metadata:
   namespace: roboshop
 
 spec:
-selector:
-  app: multicontainer
+  selector:
+    app: multicontainer
 
   ports:
   - protocol: TCP
