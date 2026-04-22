@@ -11,26 +11,26 @@ spec:
   containers: 
     - name: nginx
       image: nginx
-  ports:
-    - containerPort: 80
+      ports:
+        - containerPort: 80
 
-    
-    - name: almalinux
-      image: almalinux
-      command: ["sleep" , "1000"]
-      envFrom:
 
-  # volumes:
-  #   - name: config-volume
-  #     configMap:   
-  #       name: db-config
-  #   - name: secret-volume
-  #     secret:
-  #       secretName: db-secret
-        - configMapRef:
-            name: db-config
-        - secretRef:
-            name: db-secret
+  #   - name: almalinux
+  #     image: almalinux
+  #     command: ["sleep" , "1000"]
+  #     envFrom:
+
+  # # volumes:
+  # #   - name: config-volume
+  # #     configMap:   
+  # #       name: db-config
+  # #   - name: secret-volume
+  # #     secret:
+  # #       secretName: db-secret
+  #       - configMapRef:
+  #           name: db-config
+  #       - secretRef:
+  #           name: db-secret
   
 
   
