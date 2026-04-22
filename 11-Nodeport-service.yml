@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: frontend-service
   namespace: roboshop
-type: NodePort
+
 
 spec:
+  type: NodePort
   selector:
     project: roboshop
     app: multicontainer
