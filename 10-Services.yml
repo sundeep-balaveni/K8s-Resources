@@ -6,6 +6,7 @@ metadata:
 type: ClusterIP
 
 spec:
+  type: ClusterIP
   selector:
     project: roboshop
     app: multicontainer

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+  # the label selector for the ReplicaSet
+    app: guestbook
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 2
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+
+      # the pod template
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nn-frontend
+        image: nginx:latest
