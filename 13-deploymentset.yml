@@ -1,10 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name:   
   
   labels:
     app: nginx  
+
+  annotations:
+    kubernetes.io/change-cause: "v3 deployment of nginx application"
 
     # the namespace in which the deployment will be created 
 spec:
