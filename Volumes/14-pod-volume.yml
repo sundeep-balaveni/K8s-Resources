@@ -28,12 +28,47 @@ spec:
         - name: frontend-logs
           mountPath: /var/log/nginx
 
+      labels:
+        app: frontend
+        project: roboshop
+        environment: dev
+        purpose: poc
+
     - name: frontend-sidecar
       image: busybox:latest
       command: ["sh", "-c", "tail -f /var/log/nginx/access.log"]
       volumeMounts:
         - name: frontend-logs
-          mountPath: /var/log/nginx   
+          mountPath: /var/log/nginx 
+
+---
+
+#nodeport service this will expose the frontend pod to outside world
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: roboshop
+
+
+spec:
+  type: NodePort
+  selector:
+    project: roboshop
+    app: multicontainer
+
+  ports:
+  - name: nginx
+    protocol: TCP
+    port: 80  #service port
+    targetPort: 80 #container port
+    nodePort: 30080  #node port
+
+     
+  
+
 
   volumes:
     - name: frontend-logs
