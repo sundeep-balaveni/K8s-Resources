@@ -3,6 +3,7 @@ kind: Namespace
 metadata:
   name: roboshop
   labels:
+  
     project: roboshop
     environment: dev
     purpose: poc
@@ -16,6 +17,10 @@ metadata:
   namespace: roboshop
   labels:
     app: frontend
+    project: roboshop
+    environment: dev
+    purpose: poc
+
 
 spec:
   containers: 
@@ -28,11 +33,6 @@ spec:
         - name: frontend-logs
           mountPath: /var/log/nginx
 
-      labels:
-        app: frontend
-        project: roboshop
-        environment: dev
-        purpose: poc
 
     - name: frontend-sidecar
       image: busybox:latest
@@ -41,10 +41,13 @@ spec:
         - name: frontend-logs
           mountPath: /var/log/nginx 
 
+  volumes:
+    - name: frontend-logs
+      emptyDir: {}
+
 ---
 
 #nodeport service this will expose the frontend pod to outside world
-
 
 apiVersion: v1
 kind: Service
@@ -73,6 +76,4 @@ spec:
   
 
 
-  volumes:
-    - name: frontend-logs
-      emptyDir: {}
+ 
